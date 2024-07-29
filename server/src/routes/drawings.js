@@ -1,8 +1,5 @@
-
-//const {} = require("../controllers/countries")
 const express = require('express');
 const router = express.Router();
-//const Drawing = require('../models/Drawing');
 const {Drawing} = require('../db');
 
 
@@ -25,6 +22,29 @@ router.get('/:id', async (req, res) => {
     res.json(drawing);
   } catch (error) {
     res.status(500).send('Error fetching drawing');
+  }
+});
+
+router.post('/', async (req, res) => {
+  try {
+    const { title, description, imageUrl, category } = req.body;
+
+   
+    if (!title || !description || !imageUrl || !category) {
+      return res.status(400).send('All fields are required');
+    }
+
+    
+    const newDrawing = await Drawing.create({
+      title,
+      description,
+      imageUrl,
+      category,
+    });
+
+    res.status(201).json(newDrawing);
+  } catch (error) {
+    res.status(500).send('Error creating drawing');
   }
 });
 
