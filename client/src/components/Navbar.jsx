@@ -24,6 +24,9 @@ const Navbar = () => {
           <Link to="/profile" className="text-white hover:text-sky-blue">
             Perfil
           </Link>
+          <Link to="/contact" className="text-white hover:text-sky-blue">
+          Contacto
+          </Link>
         </div>
 
         {/* Botón de menú para pantallas pequeñas */}
@@ -50,6 +53,9 @@ const Navbar = () => {
             </Link>
             <Link to="/profile" className="text-white hover:text-sky-blue">
               Perfil
+            </Link>
+            <Link to="/contact" className="text-white hover:text-sky-blue">
+            Contacto
             </Link>
           </div>
         </div>
