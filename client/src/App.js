@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import Gallery from './components/Gallery';
 import Contact from './pages/Contact';
+import Jobs from './pages/Jobs';
 import './index.css';
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/jobs" element={<Jobs />} />
         
       </Routes>
     </Router>
