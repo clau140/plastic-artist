@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const {Drawing} = require('../db');
+const {Jobs} = require('../db');
 
 
 router.get('/', async (req, res) => {
   try {
     const category = req.query.category;
     const query = category ? { where: { category } } : {};
-    const drawings = await Drawing.findAll(query);
-    res.json(drawings);
+    const jobs = await Jobs.findAll(query);
+    res.json(jobs);
   } catch (error) {
     res.status(500).send('Error fetching drawings');
   }
@@ -17,11 +17,11 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    const drawing = await Drawing.findByPk(req.params.id);
-    if (!drawing) return res.status(404).send('Drawing not found');
-    res.json(drawing);
+    const jobs = await Jobs.findByPk(req.params.id);
+    if (!jobs) return res.status(404).send('Jobs not found');
+    res.json(jobs);
   } catch (error) {
-    res.status(500).send('Error fetching drawing');
+    res.status(500).send('Error fetching jobs');
   }
 });
 
@@ -35,16 +35,16 @@ router.post('/', async (req, res) => {
     }
 
     
-    const newDrawing = await Drawing.create({
+    const newJobs = await Jobs.create({
       title,
       description,
       imageUrl,
       category,
     });
 
-    res.status(201).json(newDrawing);
+    res.status(201).json(newJobs);
   } catch (error) {
-    res.status(500).send('Error creating drawing');
+    res.status(500).send('Error creating jobs');
   }
 });
 
