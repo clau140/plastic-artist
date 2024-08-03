@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { HomeIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'; 
+import Search from './Search'; 
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,8 +17,9 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Menú de navegación para pantallas grandes */}
-        <div className="hidden md:flex space-x-4">
+        {/* Barra de búsqueda para pantallas grandes */}
+        <div className="hidden md:flex items-center space-x-4">
+          <Search />
           <Link to="/gallery" className="text-white hover:text-sky-blue">
             Galería
           </Link>
@@ -25,7 +27,7 @@ const Navbar = () => {
             Perfil
           </Link>
           <Link to="/contact" className="text-white hover:text-sky-blue">
-          Contacto
+            Contacto
           </Link>
         </div>
 
@@ -48,6 +50,7 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden bg-dark-blue bg-opacity-90 absolute top-16 left-0 w-full shadow-lg p-4 z-30"> {/* Ajuste de z-index y opacidad */}
           <div className="flex flex-col space-y-4">
+            <Search />
             <Link to="/gallery" className="text-white hover:text-sky-blue">
               Galería
             </Link>
@@ -55,7 +58,7 @@ const Navbar = () => {
               Perfil
             </Link>
             <Link to="/contact" className="text-white hover:text-sky-blue">
-            Contacto
+              Contacto
             </Link>
           </div>
         </div>
@@ -65,4 +68,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
 
