@@ -80,6 +80,7 @@ router.delete('/:id', async (req, res) => {
   } catch (error) {
     res.status(500).send('Error deleting job');
   }
+  
 });
 
 module.exports = router;
