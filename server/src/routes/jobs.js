@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {Jobs} = require('../db');
-
+const { Jobs } = require('../db');
 
 router.get('/', async (req, res) => {
   try {
@@ -10,18 +9,17 @@ router.get('/', async (req, res) => {
     const jobs = await Jobs.findAll(query);
     res.json(jobs);
   } catch (error) {
-    res.status(500).send('Error fetching drawings');
+    res.status(500).send('Error fetching jobs');
   }
 });
 
-
 router.get('/:id', async (req, res) => {
   try {
-    const jobs = await Jobs.findByPk(req.params.id);
-    if (!jobs) return res.status(404).send('Jobs not found');
-    res.json(jobs);
+    const job = await Jobs.findByPk(req.params.id);
+    if (!job) return res.status(404).send('Job not found');
+    res.json(job);
   } catch (error) {
-    res.status(500).send('Error fetching jobs');
+    res.status(500).send('Error fetching job');
   }
 });
 
@@ -29,22 +27,58 @@ router.post('/', async (req, res) => {
   try {
     const { title, description, imageUrl, category } = req.body;
 
-   
     if (!title || !description || !imageUrl || !category) {
       return res.status(400).send('All fields are required');
     }
 
-    
-    const newJobs = await Jobs.create({
+    const newJob = await Jobs.create({
       title,
       description,
       imageUrl,
       category,
     });
 
-    res.status(201).json(newJobs);
+    res.status(201).json(newJob);
   } catch (error) {
-    res.status(500).send('Error creating jobs');
+    res.status(500).send('Error creating job');
+  }
+});
+
+
+router.put('/:id', async (req, res) => {
+  try {
+    const { title, description, imageUrl, category } = req.body;
+
+    const [updated] = await Jobs.update(
+      { title, description, imageUrl, category },
+      { where: { id: req.params.id } }
+    );
+
+    if (updated) {
+      const updatedJob = await Jobs.findByPk(req.params.id);
+      res.json(updatedJob);
+    } else {
+      res.status(404).send('Job not found');
+    }
+  } catch (error) {
+    res.status(500).send('Error updating job');
+  }
+});
+
+
+router.delete('/:id', async (req, res) => {
+  try {
+    const deleted = await Jobs.destroy({
+      where: { id: req.params.id }
+    });
+
+    if (deleted) {
+      res.status(204).send();
+    } else {
+      res.status(404).send('Job not found');
+    }
+  } catch (error) {
+    res.status(500).send('Error deleting job');
   }
 });
 
