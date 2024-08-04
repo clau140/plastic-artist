@@ -19,7 +19,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="container mx-auto p-4 mt-16"> {/* Ajuste de margen superior */}
+    <div className="container mx-auto p-4 mt-16"> 
       <h1 className="text-3xl font-bold mb-4">Contactar al Dibujante</h1>
       <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-lg">
         <div className="mb-4">
