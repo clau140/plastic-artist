@@ -10,5 +10,6 @@ server.use(express.json());
 server.use(cors());
 
 server.use(router);
+//server.use('/api', router);
 
 module.exports = server;
