@@ -1,15 +1,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from '../../api/axios';
+import axios from 'axios';
 
 
 export const fetchJobs = createAsyncThunk('jobs/fetchJobs', async () => {
-  const response = await axios.get('/jobs');
+  const response = await axios.get('http://localhost:3001/jobs');
   return response.data;
 });
 
 
 export const createJob = createAsyncThunk('jobs/createJob', async (jobData) => {
-  const response = await axios.post('/jobs', jobData, {
+  const response = await axios.post('http://localhost:3001/jobs', jobData, {
     headers: { 'Content-Type': 'multipart/form-data' }
   });
   return response.data;
@@ -17,7 +17,7 @@ export const createJob = createAsyncThunk('jobs/createJob', async (jobData) => {
 
 
 export const deleteJob = createAsyncThunk('jobs/deleteJob', async (jobId) => {
-  await axios.delete(`/jobs/${jobId}`);
+  await axios.delete(`http://localhost:3001/jobs/${jobId}`);
   return jobId;
 });
 
@@ -90,7 +90,7 @@ const jobsSlice = createSlice({
       })
       
       
-      
+
       .addCase(deleteJob.fulfilled, (state, action) => {
         state.jobs = state.jobs.filter(job => job.id !== action.payload);
         state.filteredJobs = state.filteredJobs.filter(job => job.id !== action.payload);

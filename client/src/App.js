@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Gallery from './components/Gallery';
 import Contact from './pages/Contact';
 import Jobs from './pages/Jobs';
+import Dashboard from './pages/Dashboard';
 import './index.css';
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/jobs" element={<Jobs />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
       </main>
     </Router>
