@@ -3,7 +3,9 @@ const router = express.Router();
 const { Jobs } = require('../db');
 const cloudinary = require('../config/cloudinaryConfig'); 
 const multer = require('multer');
-const upload = multer(); 
+
+const upload = multer({ dest: 'uploads/' }); // Cambia el destino si es necesario
+
 
 router.get('/', async (req, res) => {
   try {
@@ -28,28 +30,35 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', upload.single('image'), async (req, res) => {
   try {
-    const { title, description, category } = req.body;
-    const imageFile = req.file;
+    console.log('Request body:', req.body); 
+    console.log('Request file:', req.file);
 
-    if (!title || !description || !imageFile || !category) {
+    const { title, description, category } = req.body;
+    const image = req.file;
+
+    if (!title || !description || !image || !category) {
+      console.log('Missing fields'); 
       return res.status(400).send('All fields are required');
     }
 
     // Subir imagen a Cloudinary
-    const result = await cloudinary.uploader.upload(imageFile.path);
+    const result = await cloudinary.uploader.upload(image.path);
+    console.log('Cloudinary upload result:', result); 
 
     const newJob = await Jobs.create({
       title,
       description,
-      imageUrl: result.secure_url, // URL de la imagen subida a Cloudinary
+      image: result.secure_url, 
       category,
     });
 
     res.status(201).json(newJob);
   } catch (error) {
+    console.error('Error creating job:', error); 
     res.status(500).send('Error creating job');
   }
 });
+
 
 router.put('/:id', upload.single('image'), async (req, res) => {
   try {

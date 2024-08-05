@@ -12,12 +12,12 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      imageUrl: {
+      image: {
         type: DataTypes.STRING,
         allowNull: false,
       },
       category: {
-        type: DataTypes.ENUM('Cuadros', 'Retratos', 'Carteles personalizados', 'Murales', 'Ilustraciones digitales', 'Otros'),
+        type: DataTypes.ENUM('Cuadros', 'Retratos', 'Carteles personalizados', 'Murales', 'Otros'),
         allowNull: false,
       },
 
