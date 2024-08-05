@@ -25,7 +25,7 @@ const Home = () => {
         </p>
         <div className="flex flex-col md:flex-row mt-4 space-y-4 md:space-y-0 md:space-x-4">
           <Link
-            to="/gallery"
+            to="/jobs"
             className="bg-dark-blue text-white text-lg font-semibold px-6 py-3 rounded-lg shadow-lg hover:text-light-blue hover:bg-dark-gray hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-105 flex items-center"
           >
             <FontAwesomeIcon icon={faImages} className="mr-2" /> 

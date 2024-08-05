@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import Gallery from './components/Gallery';
 import Contact from './pages/Contact';
-import Jobs from './pages/Jobs';
+import Jobs from './components/Jobs';
 import Dashboard from './pages/Dashboard';
 import './index.css';
 

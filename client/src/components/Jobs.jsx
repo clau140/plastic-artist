@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchJobs, setCategoryFilter } from '../redux/slices/jobsSlice';
 import { useState } from 'react';
-import Card from '../components/Card'; 
+import Card from './Card';
 
-const Jobs= () => {
+const Jobs = () => {
   const dispatch = useDispatch();
   const { filteredJobs, categoryFilter, status, error } = useSelector((state) => state.jobs);
 
@@ -16,13 +16,9 @@ const Jobs= () => {
     }
   }, [dispatch, status]);
 
- 
-
   useEffect(() => {
     dispatch(setCategoryFilter(localCategoryFilter));
   }, [localCategoryFilter, dispatch]);
-
-  
 
   const handleCategoryChange = (e) => {
     setLocalCategoryFilter(e.target.value);
@@ -41,18 +37,17 @@ const Jobs= () => {
       <h1 className="text-3xl font-bold mb-4">Trabajos</h1>
 
       <div className="flex flex-col md:flex-row md:justify-between mb-6">
-        
-
         <select
           value={localCategoryFilter}
           onChange={handleCategoryChange}
           className="border border-gray-300 p-2 rounded"
         >
           <option value="">Todas las categorías</option>
-          
-          <option value="category1">Categoría 1</option>
-          <option value="category2">Categoría 2</option>
-          <option value="category3">Categoría 3</option>
+          <option value="Cuadros">Cuadros</option>
+          <option value="Retratos">Retratos</option>
+          <option value="Carteles personalizados">Carteles personalizados</option>
+          <option value="Murales">Murales</option>
+          <option value="Otros">Otros</option>
         </select>
       </div>
 
