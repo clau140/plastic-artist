@@ -4,7 +4,8 @@ const { Jobs } = require('../db');
 const cloudinary = require('../config/cloudinaryConfig'); 
 const multer = require('multer');
 
-const upload = multer({ dest: 'uploads/' }); // Cambia el destino si es necesario
+const upload = multer({ dest: 'uploads/' }); 
+
 
 
 router.get('/', async (req, res) => {
