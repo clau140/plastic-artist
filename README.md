@@ -13,6 +13,8 @@ Este es un proyecto en desarrollo para un portafolio en línea destinado a un di
 - **Base de Datos**: PostgreSQL (en desarrollo)
 - **Autenticación**: JWT (en desarrollo)
 - **Estilos**: CSS, Material-UI (en desarrollo)
+- **Almacenamiento de Imágenes**: Cloudinary
+- **Envío de Correos**: Nodemailer
 
 ## ⭐ Características Planificadas
 
@@ -22,6 +24,7 @@ Este es un proyecto en desarrollo para un portafolio en línea destinado a un di
 - Página de login para acceso al panel de administración.
 - Panel de administración para que el artista gestione sus trabajos.
 
-**Nota:** Estas características están en fase de diseño e implementación.
+**Nota:** Estas características están en fase de diseño e implementación. 
+
 
 
