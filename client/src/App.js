@@ -2,10 +2,11 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
-import Gallery from './components/Gallery';
+
 import Contact from './pages/Contact';
 import Jobs from './components/Jobs';
 import Dashboard from './pages/Dashboard';
+import WorkDetail from './components/WorkDetail';
 import './index.css';
 
 const App = () => {
@@ -15,9 +16,9 @@ const App = () => {
       <main className="pt-16"> 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/gallery" element={<Gallery />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/jobs" element={<Jobs />} />
+        <Route exact path="/jobs/:id" element={<WorkDetail />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
       </main>

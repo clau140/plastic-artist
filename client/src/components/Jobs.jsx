@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchJobs, setCategoryFilter } from '../redux/slices/jobsSlice';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Card from './Card';
 
 const Jobs = () => {
@@ -34,6 +35,12 @@ const Jobs = () => {
 
   return (
     <div className="container mx-auto p-4">
+
+      <div className="mt-8">
+        <Link to="/" className="text-sky-blue hover:underline">
+          Volver a Inicio
+        </Link>
+      </div>
       <h1 className="text-3xl font-bold mb-4">Trabajos</h1>
 
       <div className="flex flex-col md:flex-row md:justify-between mb-6">

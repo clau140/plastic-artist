@@ -1,9 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-
 export const fetchJobs = createAsyncThunk('jobs/fetchJobs', async () => {
   const response = await axios.get('http://localhost:3001/jobs');
+  return response.data;
+});
+
+
+export const fetchJobById = createAsyncThunk('jobs/fetchJobById', async (id) => {
+  const response = await axios.get(`http://localhost:3001/jobs/${id}`);
   return response.data;
 });
 
@@ -23,24 +28,23 @@ export const deleteJob = createAsyncThunk('jobs/deleteJob', async (jobId) => {
 
 const jobsSlice = createSlice({
   name: 'jobs',
-
   initialState: {
     jobs: [],
+    selectedJob: null,
     filteredJobs: [],
     searchQuery: '',
     categoryFilter: '',
     status: 'idle',
     error: null
   },
-
   reducers: {
-   
+    
     setJobs: (state, action) => {
       state.jobs = action.payload;
       state.filteredJobs = action.payload;
     },
 
-   
+    
     setSearchQuery: (state, action) => {
       state.searchQuery = action.payload;
       state.filteredJobs = state.jobs.filter(job =>
@@ -49,6 +53,7 @@ const jobsSlice = createSlice({
       );
     },
 
+    
     setCategoryFilter: (state, action) => {
       state.categoryFilter = action.payload;
       state.filteredJobs = state.jobs.filter(job =>
@@ -57,7 +62,6 @@ const jobsSlice = createSlice({
       );
     },
   },
-
   extraReducers: (builder) => {
     
     builder
@@ -74,8 +78,18 @@ const jobsSlice = createSlice({
         state.error = action.error.message;
       })
 
+      .addCase(fetchJobById.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchJobById.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.selectedJob = action.payload;
+      })
+      .addCase(fetchJobById.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
 
-      
       .addCase(createJob.pending, (state) => {
         state.status = 'loading';
       })
@@ -88,9 +102,8 @@ const jobsSlice = createSlice({
         state.status = 'failed';
         state.error = action.error.message;
       })
-      
-      
 
+      
       .addCase(deleteJob.fulfilled, (state, action) => {
         state.jobs = state.jobs.filter(job => job.id !== action.payload);
         state.filteredJobs = state.filteredJobs.filter(job => job.id !== action.payload);
@@ -102,8 +115,5 @@ const jobsSlice = createSlice({
   }
 });
 
-
 export const { setJobs, setSearchQuery, setCategoryFilter } = jobsSlice.actions;
-
-
 export default jobsSlice.reducer;
