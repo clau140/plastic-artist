@@ -3,10 +3,10 @@ const router = express.Router();
 const { Jobs } = require('../db');
 const cloudinary = require('../config/cloudinaryConfig'); 
 const multer = require('multer');
+const fs = require('fs');  
+const path = require('path');
 
 const upload = multer({ dest: 'uploads/' }); 
-
-
 
 router.get('/', async (req, res) => {
   try {
@@ -42,9 +42,10 @@ router.post('/', upload.single('image'), async (req, res) => {
       return res.status(400).send('All fields are required');
     }
 
-    // Subir imagen a Cloudinary
     const result = await cloudinary.uploader.upload(image.path);
     console.log('Cloudinary upload result:', result); 
+
+    fs.unlinkSync(image.path);
 
     const newJob = await Jobs.create({
       title,
@@ -60,7 +61,6 @@ router.post('/', upload.single('image'), async (req, res) => {
   }
 });
 
-
 router.put('/:id', upload.single('image'), async (req, res) => {
   try {
     const { title, description, category } = req.body;
@@ -70,14 +70,17 @@ router.put('/:id', upload.single('image'), async (req, res) => {
 
     if (!job) return res.status(404).send('Job not found');
 
-    let imageUrl = job.imageUrl;
+    let imageUrl = job.image;
     if (imageFile) {
       const result = await cloudinary.uploader.upload(imageFile.path);
       imageUrl = result.secure_url;
+
+      // Para eliminar archivo temporal
+      fs.unlinkSync(imageFile.path);
     }
 
     const [updated] = await Jobs.update(
-      { title, description, imageUrl, category },
+      { title, description, image: imageUrl, category },
       { where: { id: req.params.id } }
     );
 
@@ -94,6 +97,17 @@ router.put('/:id', upload.single('image'), async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
   try {
+    const job = await Jobs.findByPk(req.params.id);
+
+    if (!job) return res.status(404).send('Job not found');
+
+    
+    const imageUrl = job.image;
+    if (imageUrl) {
+      const publicId = path.basename(imageUrl, path.extname(imageUrl));  
+      await cloudinary.uploader.destroy(publicId);  
+    }
+
     const deleted = await Jobs.destroy({
       where: { id: req.params.id }
     });
@@ -109,3 +123,4 @@ router.delete('/:id', async (req, res) => {
 });
 
 module.exports = router;
+
