@@ -12,10 +12,10 @@ const Jobs = () => {
   const [localCategoryFilter, setLocalCategoryFilter] = useState(categoryFilter);
 
   useEffect(() => {
-    if (status === 'idle') {
+    
       dispatch(fetchJobs());
-    }
-  }, [dispatch, status]);
+    
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(setCategoryFilter(localCategoryFilter));
