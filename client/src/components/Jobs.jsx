@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchJobs, setCategoryFilter } from '../redux/slices/jobsSlice';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Card from './Card';
+import Pagination from './Pagination';
 
 const Jobs = () => {
   const dispatch = useDispatch();
   const { filteredJobs, categoryFilter, status, error } = useSelector((state) => state.jobs);
 
   const [localCategoryFilter, setLocalCategoryFilter] = useState(categoryFilter);
+  const [currentPage, setCurrentPage] = useState(1);
+  const jobsPerPage = 6;
 
   useEffect(() => {
-    
-      dispatch(fetchJobs());
-    
+    dispatch(fetchJobs());
   }, [dispatch]);
 
   useEffect(() => {
@@ -23,7 +23,18 @@ const Jobs = () => {
 
   const handleCategoryChange = (e) => {
     setLocalCategoryFilter(e.target.value);
+    setCurrentPage(1); 
   };
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const indexOfLastJob = currentPage * jobsPerPage;
+  const indexOfFirstJob = indexOfLastJob - jobsPerPage;
+  const currentJobs = filteredJobs.slice(indexOfFirstJob, indexOfLastJob);
+
+  const totalPages = Math.ceil(filteredJobs.length / jobsPerPage);
 
   if (status === 'loading') {
     return <div className="text-center text-gray-500">Loading...</div>;
@@ -35,7 +46,6 @@ const Jobs = () => {
 
   return (
     <div className="container mx-auto p-4">
-
       <div className="mt-8">
         <Link to="/" className="text-sky-blue hover:underline">
           Volver a Inicio
@@ -59,10 +69,18 @@ const Jobs = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filteredJobs.map((job) => (
+        {currentJobs.map((job) => (
           <Card key={job.id} job={job} />
         ))}
       </div>
+
+      {totalPages > 1 && (
+        <Pagination
+          totalPages={totalPages}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
+      )}
     </div>
   );
 };
