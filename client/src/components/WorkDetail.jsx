@@ -9,14 +9,8 @@ const WorkDetail = () => {
   const { selectedJob, status, error } = useSelector((state) => state.jobs);
 
   useEffect(() => {
-    if (status === 'idle') {
-      dispatch(fetchJobById(id));
-    }
-  }, [dispatch, id, status]);
-
-  console.log('Status:', status);
-  console.log('Selected Job:', selectedJob);
-  console.log('Error:', error);
+    dispatch(fetchJobById(id));
+  }, [dispatch, id]);
 
   if (status === 'loading') {
     return <div>Loading...</div>;
@@ -41,4 +35,3 @@ const WorkDetail = () => {
 };
 
 export default WorkDetail;
-

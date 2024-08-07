@@ -1,12 +1,15 @@
 
 import { configureStore } from '@reduxjs/toolkit';
-import jobsReducer from './slices/jobsSlice'; 
+import jobsReducer from './slices/jobsSlice';
 import contactReducer from './slices/contactSlice'
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
+    jobs: jobsReducer,
     contact: contactReducer,
-    jobs: jobsReducer, 
   },
 });
+
+export default store;
+
 
