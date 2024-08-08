@@ -20,7 +20,7 @@ const Navbar = () => {
         {/* Barra de búsqueda para pantallas grandes */}
         <div className="hidden md:flex items-center space-x-4">
           <Search />
-          <Link to="/gallery" className="text-white hover:text-sky-blue">
+          <Link to="/jobs" className="text-white hover:text-sky-blue">
             Galería
           </Link>
           <Link to="/profile" className="text-white hover:text-sky-blue">
@@ -51,7 +51,7 @@ const Navbar = () => {
         <div className="md:hidden bg-dark-blue bg-opacity-90 absolute top-16 left-0 w-full shadow-lg p-4 z-30"> {/* Ajuste de z-index y opacidad */}
           <div className="flex flex-col space-y-4">
             <Search />
-            <Link to="/gallery" className="text-white hover:text-sky-blue">
+            <Link to="/jobs" className="text-white hover:text-sky-blue">
               Galería
             </Link>
             <Link to="/profile" className="text-white hover:text-sky-blue">

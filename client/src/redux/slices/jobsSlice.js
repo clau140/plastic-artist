@@ -27,6 +27,13 @@ export const deleteJob = createAsyncThunk('jobs/deleteJob', async (jobId) => {
 });
 
 
+export const updateJob = createAsyncThunk('jobs/updateJob', async ({ id, jobData }) => {
+  const response = await axios.put(`http://localhost:3001/jobs/${id}`, jobData, {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  });
+  return response.data;
+});
+
 const jobsSlice = createSlice({
   name: 'jobs',
   initialState: {
@@ -39,7 +46,6 @@ const jobsSlice = createSlice({
     error: null
   },
   reducers: {
-   
     setSearchQuery: (state, action) => {
       state.searchQuery = action.payload;
       state.filteredJobs = state.jobs.filter(job =>
@@ -47,8 +53,6 @@ const jobsSlice = createSlice({
         (state.categoryFilter ? job.category === state.categoryFilter : true)
       );
     },
-
-    
     setCategoryFilter: (state, action) => {
       state.categoryFilter = action.payload;
       state.filteredJobs = state.jobs.filter(job =>
@@ -58,7 +62,6 @@ const jobsSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-   
     builder
       .addCase(fetchJobs.pending, (state) => {
         state.status = 'loading';
@@ -72,8 +75,7 @@ const jobsSlice = createSlice({
         state.status = 'failed';
         state.error = action.error.message;
       })
-
-      
+     
       .addCase(fetchJobById.pending, (state) => {
         state.status = 'loading';
       })
@@ -85,7 +87,6 @@ const jobsSlice = createSlice({
         state.status = 'failed';
         state.error = action.error.message;
       })
-
      
       .addCase(createJob.pending, (state) => {
         state.status = 'loading';
@@ -99,7 +100,22 @@ const jobsSlice = createSlice({
         state.status = 'failed';
         state.error = action.error.message;
       })
-
+      
+      .addCase(updateJob.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(updateJob.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        const index = state.jobs.findIndex(job => job.id === action.payload.id);
+        if (index !== -1) {
+          state.jobs[index] = action.payload;
+          state.filteredJobs[index] = action.payload;
+        }
+      })
+      .addCase(updateJob.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
       
       .addCase(deleteJob.fulfilled, (state, action) => {
         state.jobs = state.jobs.filter(job => job.id !== action.payload);
