@@ -26,7 +26,7 @@ const Dashboard = () => {
       <h1 className="text-4xl font-bold text-gray-900 mb-6">Panel de Control</h1>
 
       <div className="bg-white p-6 rounded-lg shadow-lg mb-8">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Crear Nuevo Trabajo</h2>
+       
         <CreateJob />
       </div>
 
