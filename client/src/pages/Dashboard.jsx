@@ -1,15 +1,75 @@
-import React from 'react';
-import CreateJob from '../../src/components/CreateJobs';  
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchJobs, deleteJob } from '../redux/slices/jobsSlice';
+import { Link } from 'react-router-dom';
+import CreateJob from '../../src/components/CreateJobs';
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
+  const { jobs, status, error } = useSelector((state) => state.jobs);
+
+  useEffect(() => {
+    dispatch(fetchJobs());
+  }, [dispatch]);
+
+  const handleDelete = (id) => {
+    if (window.confirm('¿Estás seguro de que quieres eliminar este trabajo?')) {
+      dispatch(deleteJob(id));
+    }
+  };
+
+  if (status === 'loading') return <div className="text-center text-gray-500">Cargando...</div>;
+  if (status === 'failed') return <div className="text-center text-red-500">{error}</div>;
+
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
-      <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
-        <h2 className="text-2xl font-bold mb-4">Crear Nuevo Trabajo</h2>
-        <CreateJob />  
+    <div className="container mx-auto p-6">
+      <h1 className="text-4xl font-bold text-gray-900 mb-6">Panel de Control</h1>
+
+      <div className="bg-white p-6 rounded-lg shadow-lg mb-8">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Crear Nuevo Trabajo</h2>
+        <CreateJob />
       </div>
-      
+
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table className="w-full text-sm text-left text-gray-900 bg-white dark:text-gray-100">
+          <thead className="text-xs text-white uppercase bg-blue-600 dark:bg-blue-700">
+            <tr>
+              <th scope="col" className="px-6 py-3">Imagen</th>
+              <th scope="col" className="px-6 py-3">Nombre</th>
+              <th scope="col" className="px-6 py-3">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {jobs.map((job) => (
+              <tr
+                key={job.id}
+                className={`border-b ${job.id % 2 === 0 ? 'bg-blue-500' : 'bg-blue-600'} border-blue-400`}
+              >
+                <td className="px-6 py-4">
+                  <img src={job.image} alt={job.title} className="w-16 h-16 object-cover rounded" />
+                </td>
+                <td className="px-6 py-4 text-white">
+                  <Link to={`/jobs/${job.id}`} className="hover:underline">{job.title}</Link>
+                </td>
+                <td className="px-6 py-4 flex space-x-2">
+                  <Link
+                    to={`/jobs/edit/${job.id}`}
+                    className="bg-blue-700 text-white px-4 py-2 rounded text-center hover:bg-blue-800 w-24"
+                  >
+                    Editar
+                  </Link>
+                  <button
+                    onClick={() => handleDelete(job.id)}
+                    className="bg-red-600 text-white px-4 py-2 rounded text-center hover:bg-red-700 w-24"
+                  >
+                    Eliminar
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

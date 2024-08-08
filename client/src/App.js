@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Contact from './pages/Contact';
 import Jobs from './components/Jobs';
 import Dashboard from './pages/Dashboard';
+import UpdateJob from './components/UpdateJob';
 import WorkDetail from './components/WorkDetail';
 import './index.css';
 
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/jobs" element={<Jobs />} />
         <Route exact path="/jobs/:id" element={<WorkDetail />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/jobs/edit/:id" element={<UpdateJob />} />
       </Routes>
       </main>
     </Router>
