@@ -14,3 +14,17 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
   }
 }
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  opacity: 2;
+  transition: opacity 300ms;
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 2;
+  transition: opacity 300ms;
+}
