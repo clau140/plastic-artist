@@ -24,11 +24,15 @@ const Navbar = () => {
       <Link to="/profile" className="text-white hover:text-sky-blue">
         Perfil
       </Link>
+      <Link to="/services" className="text-white hover:text-sky-blue">
+        Servicios
+      </Link>
       <Link to="/contact" className="text-white hover:text-sky-blue">
         Contacto
       </Link>
     </div>
-    {/* Botón de menú para pantallas pequeñas */}
+
+   
     <div className="md:hidden flex items-center">
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -42,7 +46,7 @@ const Navbar = () => {
       </button>
     </div>
   </div>
-  {/* Menú desplegable para pantallas pequeñas */}
+  
   {isOpen && (
     <div className="md:hidden bg-dark-blue bg-opacity-90 absolute top-16 left-0 w-full shadow-lg p-4 z-30"> {/* Ajuste de z-index y opacidad */}
       <div className="flex flex-col space-y-4">
@@ -52,6 +56,9 @@ const Navbar = () => {
         </Link>
         <Link to="/profile" className="text-white hover:text-sky-blue">
           Perfil
+        </Link>
+        <Link to="/services" className="text-white hover:text-sky-blue">
+          Servicios
         </Link>
         <Link to="/contact" className="text-white hover:text-sky-blue">
           Contacto

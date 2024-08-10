@@ -9,6 +9,7 @@ import Dashboard from './pages/Dashboard';
 import UpdateJob from './components/UpdateJob';
 import WorkDetail from './components/WorkDetail';
 import './index.css';
+import Services from './pages/Services';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -28,6 +29,8 @@ const AnimatedRoutes = () => {
             <Route path="/jobs/:id" element={<WorkDetail />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/jobs/edit/:id" element={<UpdateJob />} />
+            <Route path="/services" element={<Services />} />
+
           </Routes>
         </div>
       </CSSTransition>
