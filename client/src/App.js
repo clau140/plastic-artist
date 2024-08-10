@@ -20,14 +20,16 @@ const AnimatedRoutes = () => {
         timeout={300}
         classNames="fade"
       >
-        <Routes location={location}>
-          <Route path="/" element={<Home />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/jobs" element={<Jobs />} />
-          <Route path="/jobs/:id" element={<WorkDetail />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/jobs/edit/:id" element={<UpdateJob />} />
-        </Routes>
+        <div className="pt-16"> 
+          <Routes location={location}>
+            <Route path="/" element={<Home />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/jobs" element={<Jobs />} />
+            <Route path="/jobs/:id" element={<WorkDetail />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/jobs/edit/:id" element={<UpdateJob />} />
+          </Routes>
+        </div>
       </CSSTransition>
     </TransitionGroup>
   );
@@ -37,9 +39,7 @@ const App = () => {
   return (
     <Router>
       <Navbar />
-      <main className="pt-16">
-        <AnimatedRoutes />
-      </main>
+      <AnimatedRoutes />
     </Router>
   );
 };

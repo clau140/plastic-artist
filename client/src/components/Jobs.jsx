@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchJobs, setCategoryFilter } from '../redux/slices/jobsSlice';
 import { Link } from 'react-router-dom';
@@ -9,15 +9,15 @@ const Jobs = () => {
   const dispatch = useDispatch();
   const { filteredJobs, categoryFilter, status, error } = useSelector((state) => state.jobs);
 
-  const [localCategoryFilter, setLocalCategoryFilter] = useState(categoryFilter);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [localCategoryFilter, setLocalCategoryFilter] = React.useState(categoryFilter);
+  const [currentPage, setCurrentPage] = React.useState(1);
   const jobsPerPage = 6;
 
-  useEffect(() => {
+  React.useEffect(() => {
     dispatch(fetchJobs());
   }, [dispatch]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     dispatch(setCategoryFilter(localCategoryFilter));
   }, [localCategoryFilter, dispatch]);
 
@@ -45,42 +45,44 @@ const Jobs = () => {
   }
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="mt-8">
-        <Link to="/" className="text-sky-blue hover:underline">
-          Volver a Inicio
-        </Link>
-      </div>
-      <h1 className="text-3xl font-bold mb-4">Trabajos</h1>
+    <div className="min-h-screen bg-gradient-to-r from-blue-500 to-teal-500 p-8">
+      <div className="container mx-auto">
+        <div className="mb-8">
+          <Link to="/" className="text-sky-blue hover:underline">
+            Volver a Inicio
+          </Link>
+        </div>
+        <h1 className="text-3xl font-bold mb-4 text-white">Trabajos</h1>
 
-      <div className="flex flex-col md:flex-row md:justify-between mb-6">
-        <select
-          value={localCategoryFilter}
-          onChange={handleCategoryChange}
-          className="border border-gray-300 p-2 rounded"
-        >
-          <option value="">Todas las categorías</option>
-          <option value="Cuadros">Cuadros</option>
-          <option value="Retratos">Retratos</option>
-          <option value="Carteles personalizados">Carteles personalizados</option>
-          <option value="Murales">Murales</option>
-          <option value="Otros">Otros</option>
-        </select>
-      </div>
+        <div className="flex flex-col md:flex-row md:justify-between mb-6">
+          <select
+            value={localCategoryFilter}
+            onChange={handleCategoryChange}
+            className="p-2 rounded-lg bg-white shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="">Todas las categorías</option>
+            <option value="Cuadros">Cuadros</option>
+            <option value="Retratos">Retratos</option>
+            <option value="Carteles personalizados">Carteles personalizados</option>
+            <option value="Murales">Murales</option>
+            <option value="Otros">Otros</option>
+          </select>
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {currentJobs.map((job) => (
-          <Card key={job.id} job={job} />
-        ))}
-      </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {currentJobs.map((job) => (
+            <Card key={job.id} job={job} />
+          ))}
+        </div>
 
-      {totalPages > 1 && (
-        <Pagination
-          totalPages={totalPages}
-          currentPage={currentPage}
-          onPageChange={handlePageChange}
-        />
-      )}
+        {totalPages > 1 && (
+          <Pagination
+            totalPages={totalPages}
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
+          />
+        )}
+      </div>
     </div>
   );
 };

@@ -28,3 +28,10 @@ body {
   opacity: 2;
   transition: opacity 300ms;
 }
+
+
+.bg-gradient-to-r {
+  background: linear-gradient(to right, #626569, #3d69bb); /* Ajusta los colores según tu diseño */
+}
+
+
