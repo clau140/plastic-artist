@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setName, setEmail, setMessage, sendContactMessage } from '../redux/slices/contactSlice';
 import { Link } from 'react-router-dom';
+import { FaPhone, FaMapMarkerAlt, FaWhatsapp } from 'react-icons/fa';
 
 const Contact = () => {
   const dispatch = useDispatch();
@@ -22,10 +23,10 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-500 to-teal-500 p-8">
       <div className="mb-8">
-          <Link to="/" className="text-sky-blue hover:underline">
-            Volver a Inicio
-          </Link>
-        </div>
+        <Link to="/" className="text-sky-blue hover:underline">
+          Volver a Inicio
+        </Link>
+      </div>
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
         
         <div className="bg-white p-6 rounded-lg shadow-lg">
@@ -83,30 +84,39 @@ const Contact = () => {
         
         <div className="bg-white p-6 rounded-lg shadow-lg">
           <h2 className="text-2xl font-bold mb-4">Contacto</h2>
-          <div className="mb-4">
-            <h3 className="text-xl font-semibold mb-2">Número de Contacto:</h3>
-            <p className="text-gray-700">+123 456 7890</p>
+          <div className="mb-4 flex items-center">
+            <FaPhone className="text-gray-700 mr-2" />
+            <div>
+              <h3 className="text-xl font-semibold mb-2">Número de Contacto:</h3>
+              <p className="text-gray-700">+123 456 7890</p>
+            </div>
           </div>
-          <div className="mb-4">
-            <h3 className="text-xl font-semibold mb-2">Ubicación:</h3>
-            <p className="text-gray-700">123 Calle Principal, Ciudad, País</p>
+          <div className="mb-4 flex items-center">
+            <FaMapMarkerAlt className="text-gray-700 mr-2" />
+            <div>
+              <h3 className="text-xl font-semibold mb-2">Ubicación:</h3>
+              <p className="text-gray-700">123 Calle Principal, Ciudad, País</p>
+            </div>
           </div>
-          <div className="mb-4">
-            <h3 className="text-xl font-semibold mb-2">WhatsApp:</h3>
-            <a
-              href="https://wa.me/1234567890"
-              className="text-blue-500 hover:underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Envíame un mensaje por WhatsApp
-            </a>
+          <div className="mb-4 flex items-center">
+            <FaWhatsapp className="text-gray-700 mr-2" />
+            <div>
+              <h3 className="text-xl font-semibold mb-2">WhatsApp:</h3>
+              <a
+                href="https://wa.me/1234567890"
+                className="text-blue-500 hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Envíame un mensaje por WhatsApp
+              </a>
+            </div>
           </div>
         </div>
       </div>
-
     </div>
   );
 };
 
 export default Contact;
+
