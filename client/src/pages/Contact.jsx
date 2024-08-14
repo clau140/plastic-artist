@@ -86,19 +86,19 @@ const Contact = () => {
         </div>
         
         <div className=" p-6 rounded-lg shadow-lg">
-          <h2 className="text-2xl font-bold mb-4">Contacto</h2>
+          <h2 className="text-2xl font-bold mb-4">Información de Contacto</h2>
           <div className="mb-4 flex items-center">
             <FaPhone className="text-gray-700 mr-2" />
             <div>
               <h3 className="text-xl font-semibold mb-2">Número de Contacto:</h3>
-              <p className="text-gray-700">+123 456 7890</p>
+              <p className="text-gray-700">+598 456 7890</p>
             </div>
           </div>
           <div className="mb-4 flex items-center">
             <FaMapMarkerAlt className="text-gray-700 mr-2" />
             <div>
               <h3 className="text-xl font-semibold mb-2">Ubicación:</h3>
-              <p className="text-gray-700">123 Calle Principal, Ciudad, País</p>
+              <p className="text-gray-700">Fray Bentos, Uruguay</p>
             </div>
           </div>
           <div className="mb-4 flex items-center">
