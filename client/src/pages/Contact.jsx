@@ -21,18 +21,20 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-500 to-teal-500 p-8">
+    <div className="min-h-screen bg-gradient-to-r from-blue-500 to-teal-500 text-white p-8">
       <div className="mb-8">
         <Link to="/" className="text-sky-blue hover:underline">
           Volver a Inicio
         </Link>
       </div>
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
+      
+      
+      <div className="container mx-auto grid md:grid-cols-2 gap-8 mt-16">
         
-        <div className="bg-white p-6 rounded-lg shadow-lg">
-          <h1 className="text-3xl font-bold mb-4">Contactar al Dibujante</h1>
-          <form onSubmit={handleSubmit}>
-            <div className="mb-4">
+      <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
+          <h1 className="text-2xl font-sans font-bold mb-4">Contactar al Dibujante</h1>
+          <form onSubmit={handleSubmit} className="space-y-4" >
+            <div>
               <label htmlFor="name" className="block text-gray-700">Nombre:</label>
               <input
                 type="text"
@@ -40,37 +42,38 @@ const Contact = () => {
                 name="name"
                 value={name}
                 onChange={handleChange}
-                className="border border-gray-300 p-2 rounded w-full"
+                className=" form-input border border-gray-300 p-3 rounded w-full focus:ring-2 focus:ring-blue-500"
                 required
               />
             </div>
-            <div className="mb-4">
+            <div>
               <label htmlFor="email" className="block text-gray-700">Correo Electrónico:</label>
               <input
                 type="email"
                 id="email"
                 name="email"
-                value={email}
+                value={email}   
+
                 onChange={handleChange}
-                className="border border-gray-300 p-2 rounded w-full"
+                className="form-input border border-gray-300 p-3 rounded w-full focus:ring-2 focus:ring-blue-500"
                 required
               />
             </div>
-            <div className="mb-4">
+            <div>
               <label htmlFor="message" className="block text-gray-700">Mensaje:</label>
               <textarea
                 id="message"
                 name="message"
                 value={message}
                 onChange={handleChange}
-                className="border border-gray-300 p-2 rounded w-full"
+                className=" form-input border border-gray-300 p-3 rounded w-full focus:ring-2 focus:ring-blue-500"
                 rows="4"
                 required
-              ></textarea>
+              />
             </div>
             <button
               type="submit"
-              className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
               Enviar
             </button>
@@ -82,7 +85,7 @@ const Contact = () => {
           </form>
         </div>
         
-        <div className="bg-white p-6 rounded-lg shadow-lg">
+        <div className=" p-6 rounded-lg shadow-lg">
           <h2 className="text-2xl font-bold mb-4">Contacto</h2>
           <div className="mb-4 flex items-center">
             <FaPhone className="text-gray-700 mr-2" />

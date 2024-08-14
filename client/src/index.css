@@ -7,6 +7,19 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+input:focus {
+  outline: none;
+}
+textarea:focus {
+  outline: none;
+}
+.form-input {
+  
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  color: #333; 
+}
+
 @media (max-width: 768px) {
   .navbar-menu {
     background-color: #1e3a8a; 
