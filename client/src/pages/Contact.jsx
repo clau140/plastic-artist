@@ -42,7 +42,7 @@ const Contact = () => {
                 name="name"
                 value={name}
                 onChange={handleChange}
-                className=" form-input border border-gray-300 p-3 rounded w-full focus:ring-2 focus:ring-blue-500"
+                className=" form-input  p-3 rounded w-full focus:ring-2 focus:ring-blue-500"
                 required
               />
             </div>
@@ -52,10 +52,10 @@ const Contact = () => {
                 type="email"
                 id="email"
                 name="email"
-                value={email}   
+                value={email} 
 
                 onChange={handleChange}
-                className="form-input border border-gray-300 p-3 rounded w-full focus:ring-2 focus:ring-blue-500"
+                className="form-input  p-3 rounded w-full focus:ring-2 focus:ring-blue-500"
                 required
               />
             </div>
@@ -66,14 +66,14 @@ const Contact = () => {
                 name="message"
                 value={message}
                 onChange={handleChange}
-                className=" form-input border border-gray-300 p-3 rounded w-full focus:ring-2 focus:ring-blue-500"
+                className=" form-input  p-3 rounded w-full focus:ring-2 focus:ring-blue-500"
                 rows="4"
                 required
               />
             </div>
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
               Enviar
             </button>
