@@ -33,7 +33,7 @@ const Search = () => {
         type="text"
         value={searchQuery}
         onChange={handleSearchChange}
-        placeholder="Buscar trabajos"
+        placeholder="Buscar trabajos..."
         className="p-2 pl-10 rounded-lg bg-white shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
       />
     </div>
