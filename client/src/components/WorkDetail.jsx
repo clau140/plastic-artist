@@ -50,5 +50,4 @@ const WorkDetail = () => {
     </div>
   );
 };
-
 export default WorkDetail;
