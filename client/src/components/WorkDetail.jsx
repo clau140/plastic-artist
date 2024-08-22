@@ -26,6 +26,7 @@ const WorkDetail = () => {
   }
 
   return (
+    <div className="min-h-screen bg-gradient-to-r from-blue-500 to-teal-500 p-8">
     <div className="container mx-auto p-4">
       <div className="mb-8 mt-12">
         <Link to="/" className="text-sky-blue hover:underline">
@@ -47,6 +48,7 @@ const WorkDetail = () => {
         <p className="text-gray-600 mb-4">{selectedJob.description}</p>
         <p className="text-gray-800 font-bold">{selectedJob.category}</p>
       </div>
+    </div>
     </div>
   );
 };
