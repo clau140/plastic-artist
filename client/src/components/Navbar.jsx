@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { HomeIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'; 
-import Search from './Search'; 
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
