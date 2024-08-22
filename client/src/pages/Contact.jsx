@@ -84,42 +84,48 @@ const Contact = () => {
           </form>
         </div>
         
-        <div className="p-6 rounded-lg shadow-2xl bg-black opacity-60 relative">
-          <h2 className="text-2xl font-bold mb-4">Información de Contacto</h2>
-          <div className="mb-4 flex items-center">
-            <FaPhone className="text-gray-700 mr-2" />
-            <div>
-              <h3 className="text-xl font-semibold mb-2">Número de Contacto:</h3>
-              <p className="text-gray-700">+598 456 7890</p>
-            </div>
-          </div>
-          <div className="mb-4 flex items-center">
-            <FaMapMarkerAlt className="text-gray-700 mr-2" />
-            <div>
-              <h3 className="text-xl font-semibold mb-2">Ubicación:</h3>
-              <p className="text-gray-700">Fray Bentos, Uruguay</p>
-            </div>
-          </div>
-          <div className="mb-4 flex items-center">
-            <FaWhatsapp className="text-gray-700 mr-2" />
-            <div>
-              <h3 className="text-xl font-semibold mb-2">WhatsApp:</h3>
-              <a
-                href="https://wa.me/1234567890"
-                className="text-blue-500 hover:underline"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Envíame un mensaje por WhatsApp
-              </a>
-            </div>
-          </div>
+        <div className="relative p-6 rounded-lg shadow-2xl">
           
+          <div className="absolute inset-0 bg-black opacity-60 rounded-lg"></div>
+
+          <div className="relative z-10 p-6 text-white">
+            <h2 className="text-2xl font-bold mb-4">Información de Contacto</h2>
+            <div className="mb-4 flex items-center">
+              <FaPhone className="text-gray-700 mr-2" />
+              <div>
+                <h3 className="text-xl font-semibold mb-2">Número de Contacto:</h3>
+                <p className="text-gray-700">+598 456 7890</p>
+              </div>
+            </div>
+            <div className="mb-4 flex items-center">
+              <FaMapMarkerAlt className="text-gray-700 mr-2" />
+              <div>
+                <h3 className="text-xl font-semibold mb-2">Ubicación:</h3>
+                <p className="text-gray-700">Fray Bentos, Uruguay</p>
+              </div>
+            </div>
+            <div className="mb-4 flex items-center">
+              <FaWhatsapp className="text-gray-700 mr-2" />
+              <div>
+                <h3 className="text-xl font-semibold mb-2">WhatsApp:</h3>
+                <a
+                  href="https://wa.me/1234567890"
+                  className="text-blue-500 hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Envíame un mensaje por WhatsApp
+                </a>
+              </div>
+            </div>
+            
+           
+          </div>
           <img
-            src={PincelImage}
-            alt="Contact"
-            className="absolute bottom-0 right-0 w-60 h-auto object-cover"
-          />
+              src={PincelImage}
+              alt="pincel"
+              className="absolute bottom-0 right-0 w-60 h-auto object-cover"
+            />
         </div>
       </div>
     </div>
