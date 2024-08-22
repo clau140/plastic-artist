@@ -4,6 +4,7 @@ import { fetchJobs, setCategoryFilter } from '../redux/slices/jobsSlice';
 import { Link } from 'react-router-dom';
 import Card from './Card';
 import Pagination from './Pagination';
+import Search from './Search'
 
 const Jobs = () => {
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ const Jobs = () => {
         <h1 className="text-3xl font-bold mb-4 text-white">Trabajos</h1>
 
         <div className="flex flex-col md:flex-row md:justify-between mb-6">
+          <Search/>
           <select
             value={localCategoryFilter}
             onChange={handleCategoryChange}
