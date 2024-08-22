@@ -22,7 +22,7 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-500 to-teal-500 text-white p-8">
-      <div className="mb-8">
+      <div className="mb-8 mt-12">
         <Link to="/" className="text-sky-blue hover:underline">
           Volver a Inicio
         </Link>
@@ -32,7 +32,7 @@ const Contact = () => {
       <div className="container mx-auto grid md:grid-cols-2 gap-8 mt-16">
         
       <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
-          <h1 className="text-2xl font-sans font-bold mb-4">Contactar al Dibujante</h1>
+          <h1 className="text-2xl font-sans font-bold mb-4">Formulario de contacto</h1>
           <form onSubmit={handleSubmit} className="space-y-4" >
             <div>
               <label htmlFor="name" className="block text-gray-700">Nombre:</label>

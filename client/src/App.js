@@ -21,7 +21,7 @@ const AnimatedRoutes = () => {
         timeout={300}
         classNames="fade"
       >
-        <div className="pt-16"> 
+        <div className=""> 
           <Routes location={location}>
             <Route path="/" element={<Home />} />
             <Route path="/contact" element={<Contact />} />

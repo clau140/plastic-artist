@@ -4,6 +4,11 @@ import { Link } from 'react-router-dom';
 const Services = () => {
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-500 to-teal-500 p-8">
+      <div className="mb-8 mt-12">
+        <Link to="/" className="text-sky-blue hover:underline">
+          Volver a Inicio
+        </Link>
+      </div>
       <div className="container mx-auto bg-white p-6 rounded-lg shadow-lg">
         <h1 className="text-3xl font-bold mb-4">Servicios Ofrecidos</h1>
         <ul className="list-inside">
