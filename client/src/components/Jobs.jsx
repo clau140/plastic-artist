@@ -47,11 +47,12 @@ const Jobs = () => {
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-500 to-teal-500 p-8">
       <div className="container mx-auto">
-        <div className="mb-8">
-          <Link to="/" className="text-sky-blue hover:underline">
-            Volver a Inicio
-          </Link>
-        </div>
+      <div className="mb-8 mt-12">
+        <Link to="/" className="text-sky-blue hover:underline">
+          Volver a Inicio
+        </Link>
+      </div>
+       
         <h1 className="text-3xl font-bold mb-4 text-white">Trabajos</h1>
 
         <div className="flex flex-col md:flex-row md:justify-between mb-6">
