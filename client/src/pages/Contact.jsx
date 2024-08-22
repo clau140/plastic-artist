@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setName, setEmail, setMessage, sendContactMessage } from '../redux/slices/contactSlice';
 import { Link } from 'react-router-dom';
 import { FaPhone, FaMapMarkerAlt, FaWhatsapp } from 'react-icons/fa';
+import PincelImage from '../assets/pincel.png'; 
 
 const Contact = () => {
   const dispatch = useDispatch();
@@ -21,19 +22,18 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-500 to-teal-500 text-white p-8">
+    <div className="min-h-screen bg-gradient-to-r from-blue-500 to-teal-500 text-white p-8 relative">
       <div className="mb-8 mt-12">
         <Link to="/" className="text-sky-blue hover:underline">
           Volver a Inicio
         </Link>
       </div>
       
-      
       <div className="container mx-auto grid md:grid-cols-2 gap-8 mt-16">
         
-      <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
+        <div className="bg-gray-100 p-6 rounded-lg shadow-2xl">
           <h1 className="text-2xl font-sans font-bold mb-4">Formulario de contacto</h1>
-          <form onSubmit={handleSubmit} className="space-y-4" >
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label htmlFor="name" className="block text-gray-700">Nombre:</label>
               <input
@@ -42,7 +42,7 @@ const Contact = () => {
                 name="name"
                 value={name}
                 onChange={handleChange}
-                className=" form-input  p-3 rounded w-full focus:ring-2 focus:ring-blue-500"
+                className="form-input p-3 rounded w-full focus:ring-2 focus:ring-blue-500"
                 required
               />
             </div>
@@ -52,10 +52,9 @@ const Contact = () => {
                 type="email"
                 id="email"
                 name="email"
-                value={email} 
-
+                value={email}
                 onChange={handleChange}
-                className="form-input  p-3 rounded w-full focus:ring-2 focus:ring-blue-500"
+                className="form-input p-3 rounded w-full focus:ring-2 focus:ring-blue-500"
                 required
               />
             </div>
@@ -66,7 +65,7 @@ const Contact = () => {
                 name="message"
                 value={message}
                 onChange={handleChange}
-                className=" form-input  p-3 rounded w-full focus:ring-2 focus:ring-blue-500"
+                className="form-input p-3 rounded w-full focus:ring-2 focus:ring-blue-500"
                 rows="4"
                 required
               />
@@ -85,7 +84,7 @@ const Contact = () => {
           </form>
         </div>
         
-        <div className=" p-6 rounded-lg shadow-lg">
+        <div className="p-6 rounded-lg shadow-2xl bg-black opacity-60 relative">
           <h2 className="text-2xl font-bold mb-4">Información de Contacto</h2>
           <div className="mb-4 flex items-center">
             <FaPhone className="text-gray-700 mr-2" />
@@ -115,6 +114,12 @@ const Contact = () => {
               </a>
             </div>
           </div>
+          
+          <img
+            src={PincelImage}
+            alt="Contact"
+            className="absolute bottom-0 right-0 w-60 h-auto object-cover"
+          />
         </div>
       </div>
     </div>
@@ -122,4 +127,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
