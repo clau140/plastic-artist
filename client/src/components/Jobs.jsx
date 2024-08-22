@@ -4,7 +4,7 @@ import { fetchJobs, setCategoryFilter } from '../redux/slices/jobsSlice';
 import { Link } from 'react-router-dom';
 import Card from './Card';
 import Pagination from './Pagination';
-import Search from './Search'
+import Search from './Search';
 
 const Jobs = () => {
   const dispatch = useDispatch();
@@ -48,16 +48,15 @@ const Jobs = () => {
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-500 to-teal-500 p-8">
       <div className="container mx-auto">
-      <div className="mb-8 mt-12">
-        <Link to="/" className="text-sky-blue hover:underline">
-          Volver a Inicio
-        </Link>
-      </div>
-       
+        <div className="mb-8 mt-12">
+          <Link to="/" className="text-sky-blue hover:underline">
+            Volver a Inicio
+          </Link>
+        </div>
+
         <h1 className="text-3xl font-bold mb-4 text-white">Trabajos</h1>
 
-        <div className="flex flex-col md:flex-row md:justify-between mb-6">
-          <Search/>
+        <div className="flex flex-col md:flex-row md:space-x-4 mb-6">
           <select
             value={localCategoryFilter}
             onChange={handleCategoryChange}
@@ -70,6 +69,7 @@ const Jobs = () => {
             <option value="Murales">Murales</option>
             <option value="Otros">Otros</option>
           </select>
+          <Search/>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -91,3 +91,4 @@ const Jobs = () => {
 };
 
 export default Jobs;
+
