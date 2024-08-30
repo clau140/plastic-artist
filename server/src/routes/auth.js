@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
@@ -8,6 +9,11 @@ const router = express.Router();
 router.post('/register', async (req, res) => {
   const { username, password } = req.body;
   try {
+    
+    const existingUser = await User.findOne({ where: { username } });
+    if (existingUser) {
+      return res.status(400).json({ error: 'El usuario ya existe' });
+    }
     const newUser = await User.create({ username, password });
     res.status(201).json({ message: 'Usuario registrado con éxito', user: newUser });
   } catch (error) {
@@ -19,18 +25,24 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
   try {
+   
     const user = await User.findOne({ where: { username } });
     if (!user) {
       return res.status(400).json({ error: 'Usuario no encontrado' });
     }
 
+    
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ error: 'Contraseña incorrecta' });
     }
 
-    // JWT
-    const token = jwt.sign({ id: user.id, username: user.username }, 'tu_secreto', { expiresIn: '1h' });
+    
+    const token = jwt.sign(
+      { id: user.id, username: user.username },
+      process.env.JWT_SECRET, 
+      { expiresIn: '1h' }
+    );
 
     res.json({ message: 'Inicio de sesión exitoso', token });
   } catch (error) {
