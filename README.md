@@ -12,7 +12,7 @@ Este es un proyecto en desarrollo para un portafolio en línea destinado a un di
 - **Backend**: Node.js, Express (en desarrollo)
 - **Base de Datos**: PostgreSQL (en desarrollo)
 - **Autenticación**: JWT (en desarrollo)
-- **Estilos**: CSS, Material-UI (en desarrollo)
+- **Estilos**: CSS, Material-UI, tailwind (en desarrollo)
 - **Almacenamiento de Imágenes**: Cloudinary
 - **Envío de Correos**: Nodemailer
 
