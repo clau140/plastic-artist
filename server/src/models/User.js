@@ -13,6 +13,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
   }, {
+    timestamps: false,
     hooks: {
       beforeCreate: async (user) => {
         const salt = await bcrypt.genSalt(10);
@@ -20,6 +21,11 @@ module.exports = (sequelize) => {
       },
     },
   });
+
+  // Método para comparar contraseñas
+  User.prototype.validPassword = async function(password) {
+    return await bcrypt.compare(password, this.password);
+  };
 
   return User;
 };
