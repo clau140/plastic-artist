@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 
 module.exports = (sequelize) => {
-  const User = sequelize.define('user', {
+  const Usuario = sequelize.define('usuario', { 
     username: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -14,18 +14,19 @@ module.exports = (sequelize) => {
     },
   }, {
     timestamps: false,
+    freezeTableName: true,
     hooks: {
-      beforeCreate: async (user) => {
+      beforeCreate: async (usuario) => {
         const salt = await bcrypt.genSalt(10);
-        user.password = await bcrypt.hash(user.password, salt);
+        usuario.password = await bcrypt.hash(usuario.password, salt);
       },
     },
   });
 
   // Método para comparar contraseñas
-  User.prototype.validPassword = async function(password) {
+  Usuario.prototype.validPassword = async function(password) {
     return await bcrypt.compare(password, this.password);
   };
 
-  return User;
+  return Usuario;
 };
