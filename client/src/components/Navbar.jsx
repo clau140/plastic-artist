@@ -18,7 +18,7 @@ const Navbar = () => {
 
   const handleModalConfirm = () => {
     setIsModalOpen(false); 
-    navigate('/admin-login'); 
+    navigate('/login'); 
   };
 
   return (
