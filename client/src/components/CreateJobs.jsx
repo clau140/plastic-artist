@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createJob } from '../redux/slices/jobsSlice';
 
-const categories = [
-  'Cuadros', 'Retratos', 'Carteles personalizados', 'Murales', 'Otros'
-];
+const categories = ['Cuadros', 'Retratos', 'Carteles personalizados', 'Murales', 'Otros'];
 
 const CreateJob = () => {
   const dispatch = useDispatch();
@@ -34,83 +32,78 @@ const CreateJob = () => {
   };
 
   return (
-    <div className="container mx-auto p-4 mt-16">
-      <h1 className="text-3xl font-bold mb-6">Crear Nuevo Trabajo</h1>
-      <form onSubmit={handleSubmit} className="w-full max-w-lg bg-white p-6 rounded-lg shadow-lg">
-        <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full px-3 mb-6">
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="title">
-              Título
-            </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="title"
-              type="text"
-              placeholder="Título del trabajo"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              required
-            />
+    <div >
+      {/* Fondo de imagen con gradiente */}
+      <div className="absolute inset-0 bg-cover bg-center bg-gradient-to-r from-blue-500 to-teal-500">
+        <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+      </div>
+
+      {/* Contenedor del formulario */}
+      <div className="relative z-10 container mx-auto grid md:grid-cols-1 gap-8 mt-16">
+        <div className="p-6">
+          {/* Aplicar texto blanco a todo el formulario */}
+          <div className="bg-gray-100 p-6 rounded-lg shadow-2xl text-white">
+            <h1 className="text-2xl font-sans font-bold mb-4">Crear Nuevo Trabajo</h1>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label htmlFor="title" className="block text-white">Título:</label>
+                <input
+                  type="text"
+                  id="title"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  className="form-input p-3 rounded w-full focus:ring-2 focus:ring-blue-500 text-black"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="description" className="block text-white">Descripción:</label>
+                <textarea
+                  id="description"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  className="form-input p-3 rounded w-full focus:ring-2 focus:ring-blue-500 text-black"
+                  rows="4"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="category" className="block text-white">Categoría:</label>
+                <select
+                  id="category"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  className="form-input p-3 rounded w-full focus:ring-2 focus:ring-blue-500 text-black"
+                  required
+                >
+                  <option value="" disabled>Selecciona una categoría</option>
+                  {categories.map((cat) => (
+                    <option key={cat} value={cat}>{cat}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label htmlFor="image" className="block text-white">Imagen:</label>
+                <input
+                  type="file"
+                  id="image"
+                  onChange={handleImageChange}
+                  className="form-input p-3 rounded w-full focus:ring-2 focus:ring-blue-500 text-black"
+                  accept="image/*"
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                disabled={status === 'loading'}
+              >
+                {status === 'loading' ? 'Creando...' : 'Crear Trabajo'}
+              </button>
+              {error && <p className="mt-4 text-red-600 text-center">{error}</p>}
+            </form>
           </div>
         </div>
-        <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full px-3 mb-6">
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="description">
-              Descripción
-            </label>
-            <textarea
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="description"
-              placeholder="Descripción del trabajo"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              rows="4"
-              required
-            ></textarea>
-          </div>
-        </div>
-        <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full px-3 mb-6">
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="category">
-              Categoría
-            </label>
-            <select
-              id="category"
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              required
-            >
-              <option value="" disabled>Selecciona una categoría</option>
-              {categories.map((cat) => (
-                <option key={cat} value={cat}>{cat}</option>
-              ))}
-            </select>
-          </div>
-        </div>
-        <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full px-3 mb-6">
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="image">
-              Imagen
-            </label>
-            <input
-              type="file"
-              id="image"
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              onChange={handleImageChange}
-              accept="image/*"
-            />
-          </div>
-        </div>
-        <button
-          type="submit"
-          className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 w-full"
-          disabled={status === 'loading'}
-        >
-          {status === 'loading' ? 'Creando...' : 'Crear Trabajo'}
-        </button>
-        {error && <p className="mt-4 text-red-600 text-center">{error}</p>}
-      </form>
+      </div>
     </div>
   );
 };
