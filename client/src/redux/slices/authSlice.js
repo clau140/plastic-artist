@@ -47,7 +47,10 @@ export const loginUser = (credentials) => async (dispatch) => {
     dispatch(loginSuccess(response.data));
     localStorage.setItem('token', response.data.token);
     toast.success('Inicio de sesión exitoso');
-    window.location.href = '/dashboard'; 
+    setTimeout(() => {
+        window.location.href = '/dashboard';
+      }, 1500);
+    
   } catch (error) {
     dispatch(loginFailure(error.response.data.error || 'Inicio de sesión fallido'));
     toast.error(error.response.data.error || 'Inicio de sesión fallido');
