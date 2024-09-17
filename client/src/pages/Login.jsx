@@ -3,32 +3,33 @@ import { useDispatch } from 'react-redux';
 import BackgroundImage from '../assets/login.jpg';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');  
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //falta crear la action
+    
+    //const loginData = { username, password };
+    // dispatch(loginAction(loginData));  
   };
 
   return (
     <div className="min-h-screen bg-cover bg-center text-white p-8 relative"
     style={{ backgroundImage: `url(${BackgroundImage})` }} >
       
-      
       <div className="container mx-auto flex justify-center items-center min-h-screen">
         <div className="bg-[rgba(173, 216, 230, 0.7)] backdrop-blur-md p-6 rounded-lg shadow-2xl w-full max-w-md">
           <h1 className="text-2xl font-sans font-bold mb-4">Iniciar Sesión</h1>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="email" className="block text-gray-700">Correo Electrónico:</label>
+              <label htmlFor="username" className="block text-gray-700">Nombre de Usuario:</label>
               <input
-                type="email"
-                id="email"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                type="text"
+                id="username"
+                name="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}  
                 className="form-input p-3 rounded w-full focus:ring-2 focus:ring-blue-500"
                 required
               />
