@@ -2,11 +2,13 @@ const express = require('express');
 const router = express.Router();
 const { Jobs } = require('../db');
 const cloudinary = require('../config/cloudinaryConfig'); 
-const multer = require('multer');
+
 const fs = require('fs');  
 const path = require('path');
-
+const multer = require('multer');
 const upload = multer({ dest: 'uploads/' }); 
+
+
 
 router.get('/', async (req, res) => {
   try {
