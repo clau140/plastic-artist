@@ -16,10 +16,10 @@ const CreateJob = () => {
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
   };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const formData = new FormData();
     formData.append('title', title);
     formData.append('description', description);
