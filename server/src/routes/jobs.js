@@ -29,34 +29,33 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.post('/', upload.single('image'), async (req, res) => {
+router.post('/', upload.array('images', 10), async (req, res) => { 
   try {
-    console.log('Request body:', req.body); 
-    console.log('Request file:', req.file);
-
     const { title, description, category } = req.body;
-    const image = req.file;
+    const images = req.files; 
 
-    if (!title || !description || !image || !category) {
-      console.log('Missing fields'); 
+    if (!title || !description || !images || !category) {
       return res.status(400).send('All fields are required');
     }
 
-    const result = await cloudinary.uploader.upload(image.path);
-    console.log('Cloudinary upload result:', result); 
-
-    fs.unlinkSync(image.path);
+    const imageUrls = await Promise.all(
+      images.map(async (image) => {
+        const result = await cloudinary.uploader.upload(image.path);
+        fs.unlinkSync(image.path); 
+        return result.secure_url; 
+      })
+    );
 
     const newJob = await Jobs.create({
       title,
       description,
-      image: result.secure_url, 
+      images: imageUrls, 
       category,
     });
 
     res.status(201).json(newJob);
   } catch (error) {
-    console.error('Error creating job:', error); 
+    console.error('Error creating job:', error);
     res.status(500).send('Error creating job');
   }
 });
