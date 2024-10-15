@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; 
-import { HomeIcon, Bars3Icon, XMarkIcon, LockClosedIcon } from '@heroicons/react/24/solid';
+import { Bars3Icon, XMarkIcon, LockClosedIcon } from '@heroicons/react/24/solid';
 import Modal from '../components/Modal'; 
+import logo from '../assets/logoSR.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +28,7 @@ const Navbar = () => {
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center">
             <Link to="/" className="text-white text-2xl font-bold flex items-center">
-              <HomeIcon className="h-6 w-6 mr-2" />
+              <img src={logo} alt="Logo" className="h-8 w-8 mr-2" /> {/* Aquí va tu logo */}
               Sergio Rodriguez
             </Link>
           </div>
