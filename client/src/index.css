@@ -55,4 +55,9 @@ textarea:focus {
   background: linear-gradient(to right, #626569, #3d69bb); /* Ajusta los colores según tu diseño */
 }
 
+.text-shadow-default {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra oscura */
+}
+
+
 

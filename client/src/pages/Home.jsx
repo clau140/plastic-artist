@@ -11,10 +11,9 @@ const Home = () => {
   const subtitleRef = useRef(null); 
   const button1Ref = useRef(null); 
   const button2Ref = useRef(null); 
+  const thankYouRef = useRef(null); 
 
-  
   useEffect(() => {
-    
     gsap.fromTo(
       titleRef.current,
       { opacity: 0, y: -50 },
@@ -38,9 +37,15 @@ const Home = () => {
       { opacity: 0, scale: 0.5 }, 
       { opacity: 1, scale: 1, duration: 1, delay: 2.3, ease: "elastic.out(1, 0.75)" } 
     );
+
+    
+    gsap.fromTo(
+      thankYouRef.current,
+      { opacity: 0, y: 30 }, 
+      { opacity: 1, y: 0, duration: 2, delay: 2.5, ease: "power3.out" } 
+    );
   }, []);
 
-  
   const handleMouseEnter = (buttonRef) => {
     gsap.to(buttonRef.current, { scale: 1.1, duration: 0.3, ease: "power1.out" }); 
   };
@@ -55,7 +60,7 @@ const Home = () => {
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       >
-        <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+        <div className="absolute inset-0 bg-black bg-opacity-70"></div> 
       </div>
 
       <div className="relative z-10 flex flex-col items-center justify-center w-full text-center p-6 bg-gray-900 bg-opacity-50 rounded-lg">
@@ -68,15 +73,20 @@ const Home = () => {
           Bienvenido
         </h1>
 
-       
         <p
           ref={subtitleRef}
           className="text-lg md:text-xl text-white mb-6 text-shadow-default"
         >
-          Explora mis últimos trabajos, descubre mi estilo y conoce más sobre mi trayectoria como dibujante. ¡Gracias por visitarme!
+          Explora mis últimos trabajos, descubre mi estilo y conoce más sobre mi trayectoria como dibujante.
         </p>
 
-        
+        <p
+          ref={thankYouRef}
+          className="text-lg md:text-2xl text-light-blue font-semibold mt-4 text-shadow-default" 
+        >
+          ¡Gracias por visitarme!
+        </p>
+
         <div className="flex flex-col md:flex-row mt-4 space-y-4 md:space-y-0 md:space-x-4">
           <Link
             to="/jobs"
@@ -108,3 +118,4 @@ const Home = () => {
 };
 
 export default Home;
+
