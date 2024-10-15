@@ -10,38 +10,37 @@ const CreateJob = () => {
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [image, setImage] = useState(null);
+  const [images, setImages] = useState([]);
   const [category, setCategory] = useState('');
 
   const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
+    setImages(Array.from(e.target.files)); // Asegúrate de que esto esté configurado correctamente
   };
-  
 
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('title', title);
     formData.append('description', description);
     formData.append('category', category);
-    if (image) {
-      formData.append('image', image);
-    }
-
+  
+    images.forEach((image) => {
+      formData.append('images', image); // Asegúrate de que cada imagen se agrega al FormData
+    });
+  
     dispatch(createJob(formData));
   };
+  
 
   return (
-    <div >
-      {/* Fondo de imagen con gradiente */}
+    <div>
       <div className="absolute inset-0 bg-cover bg-center bg-gradient-to-r from-blue-500 to-teal-500">
         <div className="absolute inset-0 bg-black bg-opacity-30"></div>
       </div>
 
-      {/* Contenedor del formulario */}
       <div className="relative z-10 container mx-auto grid md:grid-cols-1 gap-8 mt-16">
         <div className="p-6">
-          {/* Aplicar texto blanco a todo el formulario */}
           <div className="bg-gray-100 p-6 rounded-lg shadow-2xl text-white">
             <h1 className="text-2xl font-sans font-bold mb-4">Crear Nuevo Trabajo</h1>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -83,13 +82,14 @@ const CreateJob = () => {
                 </select>
               </div>
               <div>
-                <label htmlFor="image" className="block text-white">Imagen:</label>
+                <label htmlFor="images" className="block text-white">Imágenes:</label>
                 <input
                   type="file"
-                  id="image"
+                  id="images"
                   onChange={handleImageChange}
                   className="form-input p-3 rounded w-full focus:ring-2 focus:ring-blue-500 text-black"
                   accept="image/*"
+                  multiple // Asegúrate de que esto esté aquí
                 />
               </div>
               <button

@@ -21,7 +21,7 @@ const Home = () => {
           Bienvenido a mi Portafolio
         </h1>
         <p className="text-lg md:text-xl text-white mb-6 text-shadow-default">
-          Explora mis últimos trabajos, descubre mi estilo y conoce más sobre mi trayectoria como dibujante. ¡Gracias por visitar!
+          Explora mis últimos trabajos, descubre mi estilo y conoce más sobre mi trayectoria como dibujante. ¡Gracias por visitarme!
         </p>
         <div className="flex flex-col md:flex-row mt-4 space-y-4 md:space-y-0 md:space-x-4">
           <Link
