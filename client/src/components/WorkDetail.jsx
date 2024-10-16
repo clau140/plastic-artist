@@ -2,7 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { fetchJobById } from '../redux/slices/jobsSlice';
+import { Carousel } from 'react-responsive-carousel';
 import { FaTimes } from 'react-icons/fa';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const WorkDetail = () => {
   const { id } = useParams();
@@ -40,16 +42,17 @@ const WorkDetail = () => {
           </Link>
 
           <h1 className="text-3xl font-bold mb-4">{selectedJob.title}</h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
-            {selectedJob.images && selectedJob.images.map((image, index) => (
-              <img
-                key={index}
-                src={image}
-                alt={`Imagen ${index + 1}`}
-                className="w-full h-80 object-cover rounded-xl"
-              />
-            ))}
-          </div>
+
+          {/* Carrusel de imágenes */}
+          {selectedJob.images && selectedJob.images.length > 0 && (
+            <Carousel showThumbs={true} infiniteLoop={true} dynamicHeight={true} className="mb-8">
+              {selectedJob.images.map((image, index) => (
+                <div key={index}>
+                  <img src={image} alt={`Imagen ${index + 1}`} className="rounded-xl object-cover h-80 w-full" />
+                </div>
+              ))}
+            </Carousel>
+          )}
 
           <p className="text-gray-600 mb-4">{selectedJob.description}</p>
           <p className="text-gray-800 font-bold">{selectedJob.category}</p>
