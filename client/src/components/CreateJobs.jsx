@@ -14,8 +14,12 @@ const CreateJob = () => {
   const [category, setCategory] = useState('');
 
   const handleImageChange = (e) => {
-    const selectedFiles = Array.from(e.target.files); 
-    setImages((prevImages) => [...prevImages, ...selectedFiles]); 
+    const selectedFiles = Array.from(e.target.files);
+    setImages((prevImages) => [...prevImages, ...selectedFiles]);
+  };
+
+  const handleRemoveImage = (index) => {
+    setImages((prevImages) => prevImages.filter((_, i) => i !== index));
   };
 
   const handleSubmit = (e) => {
@@ -24,11 +28,11 @@ const CreateJob = () => {
     formData.append('title', title);
     formData.append('description', description);
     formData.append('category', category);
-  
+    
     images.forEach((image) => {
-      formData.append('images', image); 
+      formData.append('images', image);
     });
-  
+    
     dispatch(createJob(formData));
   };
 
@@ -88,12 +92,32 @@ const CreateJob = () => {
                   onChange={handleImageChange}
                   className="form-input p-3 rounded w-full focus:ring-2 focus:ring-blue-500 text-black"
                   accept="image/*"
-                  multiple 
+                  multiple
                 />
               </div>
+              
+              <div className="grid grid-cols-3 gap-4 mt-4">
+                {images.map((image, index) => (
+                  <div key={index} className="relative">
+                    <img
+                      src={URL.createObjectURL(image)}
+                      alt={`Preview ${index}`}
+                      className="w-full h-32 object-cover rounded"
+                    />
+                    <button
+                      type="button"
+                      className="absolute top-1 right-1 bg-red-600 text-white rounded-full p-1"
+                      onClick={() => handleRemoveImage(index)}
+                    >
+                      X
+                    </button>
+                  </div>
+                ))}
+              </div>
+
               <button
                 type="submit"
-                className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
                 disabled={status === 'loading'}
               >
                 {status === 'loading' ? 'Creando...' : 'Crear Trabajo'}
