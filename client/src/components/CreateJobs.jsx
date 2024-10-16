@@ -14,10 +14,10 @@ const CreateJob = () => {
   const [category, setCategory] = useState('');
 
   const handleImageChange = (e) => {
-    setImages(Array.from(e.target.files)); // Asegúrate de que esto esté configurado correctamente
+    const selectedFiles = Array.from(e.target.files); 
+    setImages((prevImages) => [...prevImages, ...selectedFiles]); 
   };
 
-  
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -26,12 +26,11 @@ const CreateJob = () => {
     formData.append('category', category);
   
     images.forEach((image) => {
-      formData.append('images', image); // Asegúrate de que cada imagen se agrega al FormData
+      formData.append('images', image); 
     });
   
     dispatch(createJob(formData));
   };
-  
 
   return (
     <div>
@@ -89,7 +88,7 @@ const CreateJob = () => {
                   onChange={handleImageChange}
                   className="form-input p-3 rounded w-full focus:ring-2 focus:ring-blue-500 text-black"
                   accept="image/*"
-                  multiple // Asegúrate de que esto esté aquí
+                  multiple 
                 />
               </div>
               <button

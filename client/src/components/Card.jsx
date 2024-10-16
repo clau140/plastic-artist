@@ -6,7 +6,7 @@ const Card = ({ job }) => {
     <div className="rounded-lg shadow-lg transition-shadow duration-300 ease-in-out overflow-hidden transform hover:scale-105">
       <Link to={`/jobs/${job.id}`}>
         <img
-          src={job.image}
+          src={job.images && job.images.length > 0 ? job.images[0] : 'default-image-url'} // Reemplaza 'default-image-url' por una URL por defecto si no hay imágenes
           alt={job.title}
           className="w-full h-48 object-cover"
         />
@@ -21,4 +21,3 @@ const Card = ({ job }) => {
 };
 
 export default Card;
-

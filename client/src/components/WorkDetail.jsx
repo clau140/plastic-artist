@@ -27,29 +27,36 @@ const WorkDetail = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-500 to-teal-500 p-8">
-    <div className="container mx-auto p-4">
-      <div className="mb-8 mt-12">
-        <Link to="/" className="text-sky-blue hover:underline">
-          Volver a Inicio
-        </Link>
-      </div>
-      
-      <div className="relative bg-white shadow-lg rounded-2xl p-4">
-        <Link to="/jobs" className="absolute top-2 right-2 text-gray-500 hover:text-gray-900 transition-colors duration-200">
-          <FaTimes size={20} />
-        </Link>
+      <div className="container mx-auto p-4">
+        <div className="mb-8 mt-12">
+          <Link to="/" className="text-sky-blue hover:underline">
+            Volver a Inicio
+          </Link>
+        </div>
+        
+        <div className="relative bg-white shadow-lg rounded-2xl p-4">
+          <Link to="/jobs" className="absolute top-2 right-2 text-gray-500 hover:text-gray-900 transition-colors duration-200">
+            <FaTimes size={20} />
+          </Link>
 
-        <h1 className="text-3xl font-bold mb-4">{selectedJob.title}</h1>
-        <img
-          src={selectedJob.image}
-          alt={selectedJob.title}
-          className="w-full h-80 object-cover mb-4 rounded-xl"
-        />
-        <p className="text-gray-600 mb-4">{selectedJob.description}</p>
-        <p className="text-gray-800 font-bold">{selectedJob.category}</p>
+          <h1 className="text-3xl font-bold mb-4">{selectedJob.title}</h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+            {selectedJob.images && selectedJob.images.map((image, index) => (
+              <img
+                key={index}
+                src={image}
+                alt={`Imagen ${index + 1}`}
+                className="w-full h-80 object-cover rounded-xl"
+              />
+            ))}
+          </div>
+
+          <p className="text-gray-600 mb-4">{selectedJob.description}</p>
+          <p className="text-gray-800 font-bold">{selectedJob.category}</p>
+        </div>
       </div>
-    </div>
     </div>
   );
 };
+
 export default WorkDetail;
