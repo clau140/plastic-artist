@@ -52,12 +52,18 @@ textarea:focus {
 
 
 .bg-gradient-to-r {
-  background: linear-gradient(to right, #626569, #3d69bb); /* Ajusta los colores según tu diseño */
+  background: linear-gradient(to right, #626569, #3d69bb); 
 }
 
 .text-shadow-default {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra oscura */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
 }
+
+
+.carousel .thumb img {
+  @apply w-24 h-24 object-contain rounded-md;
+}
+
 
 
 

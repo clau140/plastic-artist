@@ -35,7 +35,7 @@ const WorkDetail = () => {
             Volver a Inicio
           </Link>
         </div>
-        
+
         <div className="relative bg-white shadow-lg rounded-2xl p-4">
           <Link to="/jobs" className="absolute top-2 right-2 text-gray-500 hover:text-gray-900 transition-colors duration-200">
             <FaTimes size={20} />
@@ -43,12 +43,11 @@ const WorkDetail = () => {
 
           <h1 className="text-3xl font-bold mb-4">{selectedJob.title}</h1>
 
-          {/* Carrusel de imágenes */}
           {selectedJob.images && selectedJob.images.length > 0 && (
             <Carousel showThumbs={true} infiniteLoop={true} dynamicHeight={true} className="mb-8">
               {selectedJob.images.map((image, index) => (
                 <div key={index}>
-                  <img src={image} alt={`Imagen ${index + 1}`} className="rounded-xl object-cover h-80 w-full" />
+                  <img src={image} alt={`Imagen ${index + 1}`} className="w-full h-96 object-contain rounded-lg" />
                 </div>
               ))}
             </Carousel>
