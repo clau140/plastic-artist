@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import backgroundImage from '../assets/home1.jpg';
+import backgroundImage from '../assets/home2.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImages, faUser } from '@fortawesome/free-solid-svg-icons';
 import { gsap } from 'gsap';
