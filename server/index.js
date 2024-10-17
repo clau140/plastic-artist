@@ -4,7 +4,7 @@ const { conn } = require('./src/db.js');
 const PORT = process.env.DB_PORT || 3001;
 const createInitialUser = require('./src/createInitialUser.js');
 
-conn.sync({ force: true }).then(async () => {
+conn.sync({ force: false }).then(async () => {
   console.log('Base de datos sincronizada.');
   
   await createInitialUser(); 

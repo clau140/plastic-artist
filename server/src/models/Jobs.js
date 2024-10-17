@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     category: {
-      type: DataTypes.ENUM('Cuadros', 'Retratos', 'Carteles personalizados', 'Murales', 'Otros'),
+      type: DataTypes.ENUM('Cuadros', 'Retratos', 'Carteles personalizados', 'Murales', 'Esculturas', 'Otros'),
       allowNull: false,
     },
   }, {
