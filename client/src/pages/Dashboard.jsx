@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchJobs, deleteJob } from '../redux/slices/jobsSlice';
 import { Link } from 'react-router-dom';
-import CreateJob from '../../src/components/CreateJobs';
-import backgroundImage from '../assets/home1.jpg';  // Imagen de fondo
+import CreateJob from '../components/CreateJobs';
+import { PlusCircleIcon } from '@heroicons/react/24/solid'; 
+import backgroundImage from '../assets/home1.jpg';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const { jobs, status, error } = useSelector((state) => state.jobs);
+  const [showCreateJob, setShowCreateJob] = useState(false);
 
   useEffect(() => {
     dispatch(fetchJobs());
@@ -19,12 +21,15 @@ const Dashboard = () => {
     }
   };
 
+  const toggleCreateJobForm = () => {
+    setShowCreateJob(!showCreateJob);
+  };
+
   if (status === 'loading') return <div className="text-center text-gray-500">Cargando...</div>;
   if (status === 'failed') return <div className="text-center text-red-500">{error}</div>;
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center">
-      
+    <div className="relative min-h-screen flex flex-col items-center justify-center p-12">
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${backgroundImage})` }}
@@ -37,9 +42,18 @@ const Dashboard = () => {
           Panel de Control
         </h1>
 
-        <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-4xl mb-8">
-          <CreateJob />
-        </div>
+        <button
+          onClick={toggleCreateJobForm}
+          className="bg-green-600 text-white px-4 py-2 rounded-full mb-6 hover:bg-green-700 transition duration-300 ease-in-out flex items-center"
+        >
+          <PlusCircleIcon className="h-6 w-6 mr-2" /> Nuevo Trabajo
+        </button>
+
+        {showCreateJob && (
+          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-4xl mb-8">
+            <CreateJob />
+          </div>
+        )}
 
         <div className="relative overflow-x-auto shadow-lg rounded-lg w-full max-w-4xl">
           <table className="w-full text-sm text-left text-gray-900 bg-white dark:text-gray-100">
@@ -57,7 +71,7 @@ const Dashboard = () => {
                   className={`border-b ${job.id % 2 === 0 ? 'bg-blue-500' : 'bg-blue-600'} border-blue-400`}
                 >
                   <td className="px-6 py-4">
-                    <img src={job.image} alt={job.title} className="w-16 h-16 object-cover rounded" />
+                    <img src={job.images[0]} alt={job.title} className="w-16 h-16 object-cover rounded" />
                   </td>
                   <td className="px-6 py-4 text-white">
                     <Link to={`/jobs/${job.id}`} className="hover:underline text-lg font-semibold text-white">{job.title}</Link>
@@ -87,4 +101,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-

@@ -52,8 +52,9 @@ textarea:focus {
 
 
 .bg-gradient-to-r {
-  background: linear-gradient(to right, #626569, #3d69bb); 
+  background: linear-gradient(to right, #4a648c, #2e3a47); 
 }
+
 
 .text-shadow-default {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 

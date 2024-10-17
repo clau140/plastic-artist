@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createJob } from '../redux/slices/jobsSlice';
 
-const categories = ['Cuadros', 'Retratos', 'Carteles personalizados', 'Murales', 'Otros'];
+const categories = ['Cuadros', 'Retratos', 'Carteles personalizados', 'Murales', 'Esculturas','Otros'];
 
 const CreateJob = () => {
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ const CreateJob = () => {
       <div className="relative z-10 container mx-auto grid md:grid-cols-1 gap-8 mt-16">
         <div className="p-6">
           <div className="bg-gray-100 p-6 rounded-lg shadow-2xl text-white">
-            <h1 className="text-2xl font-sans font-bold mb-4">Crear Nuevo Trabajo</h1>
+            <h1 className="text-2xl font-sans font-bold mb-4">Nuevo Trabajo</h1>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label htmlFor="title" className="block text-white">Título:</label>

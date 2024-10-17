@@ -99,6 +99,7 @@ const UpdateJob = () => {
               <option value="Retratos">Retratos</option>
               <option value="Carteles personalizados">Carteles personalizados</option>
               <option value="Murales">Murales</option>
+              <option value="Esculturas">Esculturas</option>
               <option value="Otros">Otros</option>
             </select>
           </div>

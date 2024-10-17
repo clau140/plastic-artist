@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import backgroundImage from '../assets/home1.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight, faImages, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faImages, faUser } from '@fortawesome/free-solid-svg-icons';
 import { gsap } from 'gsap';
 import LogoAnimation from '../components/LogoAnimation'; 
 
@@ -70,7 +70,7 @@ const Home = () => {
           ref={titleRef}
           className="text-4xl md:text-5xl font-bold text-white mb-4 md:mb-6 leading-tight text-shadow-default"
         >
-          Bienvenido
+          Sergio Rodriguez
         </h1>
 
         <p
@@ -86,32 +86,34 @@ const Home = () => {
         >
           ¡Gracias por visitarme!
         </p>
-
+{/*
         <div className="flex flex-col md:flex-row mt-4 space-y-4 md:space-y-0 md:space-x-4">
-          <Link
-            to="/jobs"
-            ref={button1Ref} 
-            className="bg-dark-blue text-white text-lg font-semibold px-6 py-3 rounded-lg shadow-lg hover:text-light-blue hover:bg-dark-gray hover:shadow-xl transition duration-300 ease-in-out flex items-center"
-            onMouseEnter={() => handleMouseEnter(button1Ref)} 
-            onMouseLeave={() => handleMouseLeave(button1Ref)} 
-          >
-            <FontAwesomeIcon icon={faImages} className="mr-2" />
-            Ver Galería
-            <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
-          </Link>
+          
 
-          <Link
-            to="/profile"
-            ref={button2Ref} 
-            className="bg-dark-blue text-white text-lg font-semibold px-6 py-3 rounded-lg shadow-lg hover:text-light-blue hover:bg-dark-gray hover:shadow-xl transition duration-300 ease-in-out flex items-center"
-            onMouseEnter={() => handleMouseEnter(button2Ref)}
-            onMouseLeave={() => handleMouseLeave(button2Ref)} 
-          >
-            <FontAwesomeIcon icon={faUser} className="mr-2" />
-            Ver Perfil
-            <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
-          </Link>
+        <Link
+  to="/jobs"
+  ref={button1Ref}
+  className="bg-gradient-to-r from-light-blue to-dark-blue text-white text-lg font-semibold px-8 py-4 rounded-lg shadow-lg hover:bg-gradient-to-l hover:from-light-blue hover:to-dark-gray hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-105 flex items-center"
+  onMouseEnter={() => handleMouseEnter(button1Ref)}
+  onMouseLeave={() => handleMouseLeave(button1Ref)}
+>
+  <FontAwesomeIcon icon={faImages} className="mr-2" />
+  Galería
+</Link>
+
+<Link
+  to="/profile"
+  ref={button2Ref}
+  className="bg-gradient-to-r from-light-blue to-dark-blue text-white text-lg font-semibold px-8 py-4 rounded-lg shadow-lg hover:bg-gradient-to-l hover:from-light-blue hover:to-dark-gray hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-105 flex items-center"
+  onMouseEnter={() => handleMouseEnter(button2Ref)}
+  onMouseLeave={() => handleMouseLeave(button2Ref)}
+>
+  <FontAwesomeIcon icon={faUser} className="mr-2" />
+  Perfil
+</Link>
+
         </div>
+        */}
       </div>
     </div>
   );

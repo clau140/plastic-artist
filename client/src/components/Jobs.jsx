@@ -46,7 +46,7 @@ const Jobs = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-500 to-teal-500 p-8">
+    <div className="min-h-screen bg-gradient-to-r p-8">
       <div className="container mx-auto">
         <div className="mb-8 mt-12">
           <Link to="/" className="text-sky-blue hover:underline">
@@ -67,6 +67,7 @@ const Jobs = () => {
             <option value="Retratos">Retratos</option>
             <option value="Carteles personalizados">Carteles personalizados</option>
             <option value="Murales">Murales</option>
+            <option value="Esculturas">Esculturas</option>
             <option value="Otros">Otros</option>
           </select>
           <Search/>
