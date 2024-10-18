@@ -58,43 +58,44 @@ const UpdateJob = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">Edit Job</h1>
-      {status === 'loading' && <p>Loading...</p>}
+    <div className="container mx-auto p-6 bg-white rounded-lg shadow-md">
+      <h1 className="text-3xl font-bold mb-6 text-gray-800">Editar Trabajo</h1>
+      {status === 'loading' && <p className="text-blue-500">Cargando...</p>}
       {status === 'failed' && <p className="text-red-500">{error}</p>}
       {job && (
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-gray-700">Title:</label>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label className="block text-gray-700 font-medium">Título:</label>
             <input
               type="text"
               name="title"
               value={formData.title}
               onChange={handleChange}
-              className="border border-gray-300 p-2 rounded"
+              className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
-          <div className="mb-4">
-            <label className="block text-gray-700">Description:</label>
+          <div>
+            <label className="block text-gray-700 font-medium">Descripción:</label>
             <textarea
               name="description"
               value={formData.description}
               onChange={handleChange}
-              className="border border-gray-300 p-2 rounded"
+              className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
+              rows="5"
               required
             />
           </div>
-          <div className="mb-4">
-            <label className="block text-gray-700">Category:</label>
+          <div>
+            <label className="block text-gray-700 font-medium">Categoría:</label>
             <select
               name="category"
               value={formData.category}
               onChange={handleChange}
-              className="border border-gray-300 p-2 rounded"
+              className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
               required
             >
-              <option value="">Select a category</option>
+              <option value="">Selecciona una categoría</option>
               <option value="Cuadros">Cuadros</option>
               <option value="Retratos">Retratos</option>
               <option value="Carteles personalizados">Carteles personalizados</option>
@@ -103,24 +104,25 @@ const UpdateJob = () => {
               <option value="Otros">Otros</option>
             </select>
           </div>
-          <div className="mb-4">
-            <label className="block text-gray-700">Image:</label>
+          <div>
+            <label className="block text-gray-700 font-medium">Imagen:</label>
             <input
               type="file"
               name="image"
               onChange={handleImageChange}
-              className="border border-gray-300 p-2 rounded"
+              className="w-full border border-gray-300 p-3 rounded-lg"
             />
           </div>
-          <button type="submit" className="bg-blue-500 text-white p-2 rounded">
-            Update Job
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition duration-300"
+          >
+            Actualizar Trabajo
           </button>
         </form>
       )}
     </div>
   );
 };
-
-
 
 export default UpdateJob;
