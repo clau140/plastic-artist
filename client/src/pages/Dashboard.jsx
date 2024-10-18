@@ -5,20 +5,33 @@ import { Link } from 'react-router-dom';
 import CreateJob from '../components/CreateJobs';
 import { PlusCircleIcon } from '@heroicons/react/24/solid'; 
 import backgroundImage from '../assets/home1.jpg';
+import ConfirmationModal from '../components/ConfirmationModal'; 
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const { jobs, status, error } = useSelector((state) => state.jobs);
   const [showCreateJob, setShowCreateJob] = useState(false);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false); 
+  const [jobToDelete, setJobToDelete] = useState(null); 
 
   useEffect(() => {
     dispatch(fetchJobs());
   }, [dispatch]);
 
   const handleDelete = (id) => {
-    if (window.confirm('¿Estás seguro de que quieres eliminar este trabajo?')) {
-      dispatch(deleteJob(id));
-    }
+    setJobToDelete(id); 
+    setShowConfirmationModal(true); 
+  };
+
+  const confirmDelete = () => {
+    dispatch(deleteJob(jobToDelete)); 
+    setShowConfirmationModal(false); 
+    setJobToDelete(null); 
+  };
+
+  const cancelDelete = () => {
+    setShowConfirmationModal(false); 
+    setJobToDelete(null);
   };
 
   const toggleCreateJobForm = () => {
@@ -96,6 +109,13 @@ const Dashboard = () => {
           </table>
         </div>
       </div>
+
+      <ConfirmationModal
+        isOpen={showConfirmationModal}
+        onClose={cancelDelete}
+        onConfirm={confirmDelete}
+        message="¿Estás seguro de que quieres eliminar este trabajo?"
+      />
     </div>
   );
 };
